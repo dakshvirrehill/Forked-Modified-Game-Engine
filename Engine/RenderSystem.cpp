@@ -42,15 +42,6 @@ void RenderSystem::initialize()
 	currentView.resetView(window);
 }
 
-void RenderSystem::load(json::JSON loadNode, STRCODE fileId)
-{
-	//add code to reset the view if there is no camera
-	if (loadNode.dump().find("Camera") == std::string::npos)
-	{
-		currentView.resetView(window);
-	}
-}
-
 void RenderSystem::update(float deltaTime)
 {
 	if (window != nullptr)
@@ -111,4 +102,13 @@ void RenderSystem::setRenderLayer(IRenderable* _renderable, RenderSystem::Render
 	_renderable->setRenderLayer(newLayer);
 	addRenderable(_renderable);
 
+}
+
+void RenderSystem::setHasCamera(bool _hasCamera)
+{
+	hasCamera = _hasCamera;
+	if (!hasCamera)
+	{
+		currentView.resetView(window);
+	}
 }

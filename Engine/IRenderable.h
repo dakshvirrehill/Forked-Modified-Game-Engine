@@ -10,6 +10,7 @@ public:
 	IRenderable();
 	~IRenderable();
 protected:
+	virtual void loadLayer(json::JSON& pRenderNode);
 	virtual void render(sf::RenderWindow* _window) = 0;
 	RenderSystem::RenderLayer layer = RenderSystem::RenderLayer::Environment;
 	friend class RenderSystem;

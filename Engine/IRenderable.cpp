@@ -11,3 +11,12 @@ IRenderable::~IRenderable()
 {
 	RenderSystem::instance().removeRenderable(this);
 }
+
+void IRenderable::loadLayer(json::JSON& pRenderNode)
+{
+	if (pRenderNode.hasKey("layer"))
+	{
+		RenderSystem::instance().setRenderLayer(this, (RenderSystem::RenderLayer)pRenderNode["layer"].ToInt());
+
+	}
+}

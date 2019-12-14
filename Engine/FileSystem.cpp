@@ -27,10 +27,6 @@ void FileSystem::update(float deltaTime)
 		{
 			AssetManager::instance().LoadLevelAssets(iter.second , iter.first);
 			GameObjectManager::instance().load(iter.second, iter.first);
-			if (iter.first == currentLevel)
-			{
-				RenderSystem::instance().load(iter.second, iter.first);
-			}
 			fileData.emplace(iter.first, iter.second);										// find the file in the cached data and removed it
 		}
 		loadFiles.clear();																	// clear the list used to store remove fileIds

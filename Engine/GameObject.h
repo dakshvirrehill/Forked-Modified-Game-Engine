@@ -35,11 +35,11 @@ protected:
 	GameObject();
 	~GameObject();
 	void initialize() override;
-	void load(json::JSON& node) override;
 	void update(float deltaTime);
 	void deleteFromRemoveList();
 
 public:
+	void load(json::JSON& node) override;
 	void addComponent(Component* component);
 	void removeComponent(STRCODE compID);
 	const std::map<STRCODE, Component*>& getAllComponents();

@@ -40,10 +40,10 @@ protected:
 	virtual ~Component();
     virtual void initialize() override;
 	virtual void update(float deltaTime)=0;
-	virtual void load(json::JSON& node) override;
 
 public:
 	GameObject* getGameObject();
+	virtual void load(json::JSON& node) override;
 	virtual void setEnabled(bool _enabled);
 	bool isEnabled();
 };

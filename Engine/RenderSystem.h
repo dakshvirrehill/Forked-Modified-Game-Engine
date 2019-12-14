@@ -61,6 +61,7 @@ private:
 
 	std::string name = "";
 	bool fullscreen = false;
+	bool hasCamera = false;
 	sf::RenderWindow* window = nullptr;
 	std::map<RenderLayer, std::list<IRenderable*>> renderables;
 
@@ -78,9 +79,9 @@ public:
 	sf::RenderWindow* getRenderWindow() { return window; }
 	void addRenderable(IRenderable* _renderable);
 	void removeRenderable(IRenderable* _renderable);
-	void load(json::JSON loadNode, STRCODE fileId);
 	const sf::Vector2f& getViewSize() { return currentView.getSize(); }
 	void setRenderLayer(IRenderable* _renderable, RenderSystem::RenderLayer newLayer);
+	void setHasCamera(bool _hasCamera);
 };
 
 #endif

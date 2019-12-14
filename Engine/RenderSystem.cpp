@@ -30,14 +30,14 @@ void RenderSystem::initialize()
 	{
 		fullscreen = loadNode["Fullscreen"].ToBool();
 	}
-
+	sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
 	if (fullscreen)
 	{
-		window->create(sf::VideoMode(windowSize.x, windowSize.y, 60), name, sf::Style::Fullscreen);
+		window->create(sf::VideoMode(windowSize.x, windowSize.y, desktop.bitsPerPixel), name, sf::Style::Fullscreen);
 	}
 	else
 	{
-		window->create(sf::VideoMode(windowSize.x, windowSize.y, 60), name, sf::Style::Default);
+		window->create(sf::VideoMode(windowSize.x, windowSize.y, desktop.bitsPerPixel), name, sf::Style::Default);
 	}
 	currentView.resetView(window);
 }

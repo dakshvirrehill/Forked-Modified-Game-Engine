@@ -66,6 +66,14 @@ void RigidBody::removeCollidable(ICollidable* collider)
 void RigidBody::onCollisionEnter(const Collision* const collisionData)
 {
 	int otherColliderIx = 1;
+	if (collisionData->colliders[otherColliderIx] == nullptr)
+	{
+		otherColliderIx = 0;
+	}
+	if (collisionData->colliders[otherColliderIx] == nullptr)
+	{
+		return;
+	}
 	if (collisionData->colliders[otherColliderIx]->getGameObject() == getGameObject())
 	{
 		otherColliderIx = 0;
@@ -100,6 +108,15 @@ void RigidBody::onCollisionEnter(const Collision* const collisionData)
 void RigidBody::onCollisionStay(const Collision* const collisionData)
 {
 	int otherColliderIx = 1;
+	otherColliderIx = 1;
+	if (collisionData->colliders[otherColliderIx] == nullptr)
+	{
+		otherColliderIx = 0;
+	}
+	if (collisionData->colliders[otherColliderIx] == nullptr)
+	{
+		return;
+	}
 	if (collisionData->colliders[otherColliderIx]->getGameObject() == getGameObject())
 	{
 		otherColliderIx = 0;
@@ -134,6 +151,15 @@ void RigidBody::onCollisionStay(const Collision* const collisionData)
 void RigidBody::onCollisionExit(const Collision* const collisionData)
 {
 	int otherColliderIx = 1;
+	otherColliderIx = 1;
+	if (collisionData->colliders[otherColliderIx] == nullptr)
+	{
+		otherColliderIx = 0;
+	}
+	if (collisionData->colliders[otherColliderIx] == nullptr)
+	{
+		return;
+	}
 	if (collisionData->colliders[otherColliderIx]->getGameObject() == getGameObject())
 	{
 		otherColliderIx = 0;

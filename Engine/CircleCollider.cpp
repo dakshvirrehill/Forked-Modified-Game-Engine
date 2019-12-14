@@ -18,33 +18,33 @@ CircleCollider::~CircleCollider()
 void CircleCollider::setTrigger(bool isTrigger)
 {
 	trigger = isTrigger;
-	Component* rigidBody = getGameObject()->getComponent("RigidBody");
-	if (!staticCollider)
-	{
-		if (trigger)
-		{
-			if (rigidBody != nullptr)
-			{
-				dynamic_cast<RigidBody*>(rigidBody)->removeCollidable(this);
-				b2transform.Set(b2Vec2(
-					PIXEL_TO_METER(getGameObject()->getTransform()->getPosition().x),
-					PIXEL_TO_METER(getGameObject()->getTransform()->getPosition().y)),
-					DEG_TO_RAD(getGameObject()->getTransform()->getRotation()));
-			}
-			staticCollider = true;
-		}
-	}
-	else
-	{
-		if (!trigger)
-		{
-			if (rigidBody != nullptr)
-			{
-				dynamic_cast<RigidBody*>(rigidBody)->addCollidable(this);
-				staticCollider = false;
-			}
-		}
-	}
+	//Component* rigidBody = getGameObject()->getComponent("RigidBody");
+	//if (!staticCollider)
+	//{
+	//	if (trigger)
+	//	{
+	//		if (rigidBody != nullptr)
+	//		{
+	//			dynamic_cast<RigidBody*>(rigidBody)->removeCollidable(this);
+	//			b2transform.Set(b2Vec2(
+	//				PIXEL_TO_METER(getGameObject()->getTransform()->getPosition().x),
+	//				PIXEL_TO_METER(getGameObject()->getTransform()->getPosition().y)),
+	//				DEG_TO_RAD(getGameObject()->getTransform()->getRotation()));
+	//		}
+	//		staticCollider = true;
+	//	}
+	//}
+	//else
+	//{
+	//	if (!trigger)
+	//	{
+	//		if (rigidBody != nullptr)
+	//		{
+	//			dynamic_cast<RigidBody*>(rigidBody)->addCollidable(this);
+	//			staticCollider = false;
+	//		}
+	//	}
+	//}
 }
 
 void CircleCollider::initialize()
@@ -65,11 +65,8 @@ void CircleCollider::initialize()
 
 	shape = circle;
 	fixtureDefinition.shape = shape;
-	//get gameobject of component
-	//if current gameobject has a rigidbody component
-	//add this to that rigidbody
-	if (!trigger)
-	{
+	//if (!trigger)
+	//{
 		Component* rigidBody = getGameObject()->getComponent("RigidBody");
 		if (rigidBody != nullptr)
 		{
@@ -79,11 +76,11 @@ void CircleCollider::initialize()
 		{
 			staticCollider = true;
 		}
-	}
-	else
-	{
-		staticCollider = true;
-	}
+	//}
+	//else
+	//{
+	//	staticCollider = true;
+	//}
 
 }
 

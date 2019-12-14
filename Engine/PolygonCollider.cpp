@@ -20,33 +20,33 @@ PolygonCollider::~PolygonCollider()
 void PolygonCollider::setTrigger(bool isTrigger)
 {
 	trigger = isTrigger;
-	Component* rigidBody = getGameObject()->getComponent("RigidBody");
-	if (!staticCollider)
-	{
-		if (trigger)
-		{
-			if (rigidBody != nullptr)
-			{
-				dynamic_cast<RigidBody*>(rigidBody)->removeCollidable(this);
-				b2transform.Set(b2Vec2(
-					PIXEL_TO_METER(getGameObject()->getTransform()->getPosition().x),
-					PIXEL_TO_METER(getGameObject()->getTransform()->getPosition().y)),
-					DEG_TO_RAD(getGameObject()->getTransform()->getRotation()));
-			}
-			staticCollider = true;
-		}
-	}
-	else
-	{
-		if (!trigger)
-		{
-			if (rigidBody != nullptr)
-			{
-				dynamic_cast<RigidBody*>(rigidBody)->addCollidable(this);
-				staticCollider = false;
-			}
-		}
-	}
+	//Component* rigidBody = getGameObject()->getComponent("RigidBody");
+	//if (!staticCollider)
+	//{
+	//	if (trigger)
+	//	{
+	//		if (rigidBody != nullptr)
+	//		{
+	//			dynamic_cast<RigidBody*>(rigidBody)->removeCollidable(this);
+	//			b2transform.Set(b2Vec2(
+	//				PIXEL_TO_METER(getGameObject()->getTransform()->getPosition().x),
+	//				PIXEL_TO_METER(getGameObject()->getTransform()->getPosition().y)),
+	//				DEG_TO_RAD(getGameObject()->getTransform()->getRotation()));
+	//		}
+	//		staticCollider = true;
+	//	}
+	//}
+	//else
+	//{
+	//	if (!trigger)
+	//	{
+	//		if (rigidBody != nullptr)
+	//		{
+	//			dynamic_cast<RigidBody*>(rigidBody)->addCollidable(this);
+	//			staticCollider = false;
+	//		}
+	//	}
+	//}
 }
 
 void PolygonCollider::initialize()
@@ -73,8 +73,8 @@ void PolygonCollider::initialize()
 	shape = polygonShape;
 	fixtureDefinition.shape = shape;
 
-	if (!trigger)
-	{
+	//if (!trigger)
+	//{
 		Component* rigidBody = getGameObject()->getComponent("RigidBody");
 		if (rigidBody != nullptr)
 		{
@@ -84,11 +84,11 @@ void PolygonCollider::initialize()
 		{
 			staticCollider = true;
 		}
-	}
-	else
-	{
-		staticCollider = true;
-	}
+	//}
+	//else
+	//{
+	//	staticCollider = true;
+	//}
 
 }
 

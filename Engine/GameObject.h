@@ -30,10 +30,10 @@ private:
 public:
 	std::string name;
 	bool destroyOnUnload = true;
-
-protected:
 	GameObject();
 	~GameObject();
+
+protected:
 	void initialize() override;
 	void update(float deltaTime);
 	void deleteFromRemoveList();

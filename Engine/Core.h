@@ -12,7 +12,7 @@
 
 #pragma comment(lib, "rpcrt4.lib")
 #include <windows.h>
-
+#include <math.h>
 #include <iostream>
 #include <sstream>
 #include <string>

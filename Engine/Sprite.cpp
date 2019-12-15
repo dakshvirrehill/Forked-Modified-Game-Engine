@@ -17,14 +17,11 @@ Sprite::~Sprite()
 void Sprite::load(json::JSON& node)
 {
 	Component::load(node);
-	if (node.hasKey("Texture"))
+	IRenderable::loadLayer(node);
+	if (node.hasKey("textureAssetGUID"))
 	{
-		json::JSON textureNode = node["Texture"];
-		if (textureNode.hasKey("textureAssetGUID"))
-		{
-			textureAssetGUID = textureNode["textureAssetGUID"].ToString();
-			textureAssetID = GUIDToSTRCODE(textureAssetGUID);
-		}
+		textureAssetGUID = node["textureAssetGUID"].ToString();
+		textureAssetID = GUIDToSTRCODE(textureAssetGUID);
 	}
 	if (node.hasKey("Dimensions"))
 	{
@@ -45,11 +42,6 @@ void Sprite::load(json::JSON& node)
 		h = dimensionNode["Height"].ToInt();
 
 		dimensions = sf::IntRect(l, t, w, h);
-	}
-	if(node.hasKey("Layer"))
-	{
-		RenderSystem::instance().setRenderLayer(this, (RenderSystem::RenderLayer)node["Layer"].ToInt());
-
 	}
 }
 

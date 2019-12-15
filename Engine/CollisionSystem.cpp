@@ -261,8 +261,16 @@ void CollisionSystem::update(float deltaTime)
 
 	for (auto rigidBody : rigidbodies)
 	{
+		if (!rigidBody->getGameObject()->isEnabled() || !rigidBody->isEnabled())
+		{
+			continue;
+		}
 		for (auto collider : colliders)
 		{
+			if (!collider->getGameObject()->isEnabled() || !collider->isEnabled())
+			{
+				continue;
+			}
 			if (!rigidBody->containsCollider(collider))
 			{
 				checkCollision(rigidBody, collider);

@@ -50,7 +50,7 @@ protected:
 public:
 
 
-	void load(std::string& fileName, bool isLevelFile);
+	json::JSON load(std::string& fileName, bool isLevelFile);
 	void unload(std::string& fileName);
 	DECLARE_SINGLETON(FileSystem)
 };

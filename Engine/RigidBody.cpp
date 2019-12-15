@@ -20,7 +20,10 @@ RigidBody::RigidBody()
 RigidBody::~RigidBody()
 {
 	//remove on destruction
-	CollisionSystem::instance().removeRigidBodyFromWorld(body);
+	if (body != nullptr)
+	{
+		CollisionSystem::instance().removeRigidBodyFromWorld(body);
+	}
 	CollisionSystem::instance().removeRigidBody(this);
 }
 

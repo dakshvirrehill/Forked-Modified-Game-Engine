@@ -149,6 +149,18 @@ GameObject* GameObjectManager::findGameObject(STRCODE gameObjectUID)
 	}
 }
 
+GameObject* GameObjectManager::getGameObjectWithComponent(const std::string& compType)
+{
+	for (auto gameObject : gameObjects)
+	{
+		if (gameObject.second != nullptr && gameObject.second->getComponent(compType) != nullptr)
+		{
+			return gameObject.second;
+		}
+	}
+	return nullptr;
+}
+
 
 std::list<GameObject*> GameObjectManager::getGameObjectsWithComponent(std::string& compType)
 {
@@ -186,15 +198,16 @@ GameObject* GameObjectManager::createGameObjectWithComponents(std::list<std::str
 	return newGameObject;
 }
 
-GameObject* GameObjectManager::instantiatePrefab(STRCODE prefabUID)
+GameObject* GameObjectManager::instantiatePrefab(PrefabAsset* prefab)
 {
-	Asset* asset = AssetManager::instance().GetAssetBySTRCODE(prefabUID);
-
+	if (prefab == nullptr)
+	{
+		return nullptr;
+	}
 	GameObject* newGameObject = new GameObject();
-	newGameObject->load(static_cast<PrefabAsset*>(asset)->getPrefab());
+	newGameObject->load(prefab->getPrefab());
 	newGameObject->initialize();
 	addGameObject(newGameObject);
-
 	return newGameObject;
 }
 

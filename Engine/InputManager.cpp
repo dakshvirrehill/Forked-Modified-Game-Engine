@@ -30,6 +30,11 @@ void InputManager::update(float deltaTime)
 			RenderSystem::instance().closeWindow();
 			return;
 		case sf::Event::KeyPressed:
+			if (ev.key.code == sf::Keyboard::Escape)
+			{
+				RenderSystem::instance().closeWindow();
+				return;
+			}
 			//Do not update the state to down if it's already been set as being held.
 			if(keyMap[ev.key.code] != PushState::Held)
 			{

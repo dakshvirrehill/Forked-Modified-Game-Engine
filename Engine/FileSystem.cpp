@@ -34,7 +34,7 @@ void FileSystem::update(float deltaTime)
 }
 
 
-void FileSystem::load(std::string& fileName, bool isLevelFile)								//Method to load a file
+json::JSON FileSystem::load(std::string& fileName, bool isLevelFile)								//Method to load a file
 {
 	json::JSON fileJSON = parseJSON(fileName);
 	bool isLoaded = false;
@@ -68,11 +68,12 @@ void FileSystem::load(std::string& fileName, bool isLevelFile)								//Method t
 			}
 			currentLevel = fileId;
 		}
-
+		return loadFiles[fileId];
 	}
 	else
 	{
 		LOG(" JSON is empty , not in .json format or File doesn't exist");
+		return fileJSON;
 	}
 }
 

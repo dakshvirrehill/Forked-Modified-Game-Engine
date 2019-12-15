@@ -12,15 +12,24 @@ Text::~Text()
 	
 }
 
+void Text::setText(std::string inString)
+{
+	string = inString;
+}
+
 void Text::load(json::JSON& node)
 {
 	Component::load(node);
+	IRenderable::loadLayer(node);
 	if (node.hasKey("FontGUID"))
 	{
 		fontAssetGUID = node["FontGUID"].ToString();
 		fontAssetID = GUIDToSTRCODE(fontAssetGUID);
 	}
-
+	if (node.hasKey("offset"))
+	{
+		offset = sf::Vector2f(node["offset"]["X"].ToFloat(), node["offset"]["Y"].ToFloat());
+	}
 	if (node.hasKey("String"))
 	{
 		string = node["String"].ToString();
@@ -141,7 +150,7 @@ void Text::update(float deltaTime)
 	{
 		return;
 	}
-	text.setPosition(getGameObject()->getTransform()->getPosition());
+	text.setPosition(getGameObject()->getTransform()->getPosition() + offset);
 	if (text.getString() != string)
 	{
 		text.setString(string);
@@ -150,6 +159,10 @@ void Text::update(float deltaTime)
 
 void Text::render(sf::RenderWindow* _window)
 {
+	if (getGameObject() == nullptr)
+	{
+		return;
+	}
 	if (!getGameObject()->isEnabled() || !enabled)
 	{
 		return;

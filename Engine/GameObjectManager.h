@@ -13,7 +13,7 @@
 #include "ISystem.h"
 
 class GameObject;
-
+class PrefabAsset;
 class GameObjectManager final : public ISystem
 {
 
@@ -25,7 +25,6 @@ private:
 protected:
 	void initialize() override;
 	void update(float deltaTime) override;
-	void addGameObject(GameObject* gameObject);
 
 public:
 	static GameObjectManager& instance()
@@ -33,13 +32,15 @@ public:
 		static GameObjectManager _instance;
 		return _instance;
 	}
+	void addGameObject(GameObject* gameObject);
 
 	void removeGameObject(STRCODE gameObjectUID);
 	void removeGameObject(GameObject* gameObject);
 	GameObject* findGameObject(STRCODE gameObjectUID);
+	GameObject* getGameObjectWithComponent(const std::string& compType);
 	std::list<GameObject*> getGameObjectsWithComponent(std::string& compType);
 	GameObject* createGameObject();
-	GameObject* instantiatePrefab(STRCODE prefabUID);
+	GameObject* instantiatePrefab(PrefabAsset* prefab);
 	GameObject* createGameObjectWithComponents(std::list<std::string>& comTypes);
 
 private:

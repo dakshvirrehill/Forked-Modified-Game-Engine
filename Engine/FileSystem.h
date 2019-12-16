@@ -39,7 +39,6 @@ protected:
 	
 	json::JSON loadAsset(std::string& fileName);
 	json::JSON loadRenderSettings(std::string& fileName);
-	STRCODE getCurrentLevel();
 
     friend class GameEngine;
 	friend class AssetManager;
@@ -49,6 +48,7 @@ protected:
 
 public:
 
+	STRCODE getCurrentLevel();
 
 	json::JSON load(std::string& fileName, bool isLevelFile);
 	void unload(std::string& fileName);

@@ -25,14 +25,13 @@ void GameObjectManager::load(json::JSON& node, STRCODE levelID)
 {
 	if (node.hasKey("GameObjects"))
 	{
-		currentLevel = levelID;
 
 		json::JSON gameObjectsNode = node["GameObjects"];
 		for (auto& gameObjectNode : gameObjectsNode.ArrayRange())
 		{
 			GameObject* newGameObject = new GameObject();
 			
-			newGameObject->levelID = currentLevel;
+			newGameObject->levelID = levelID;
 			
 			newGameObject->load(gameObjectNode);
 			addGameObject(newGameObject);
@@ -109,6 +108,7 @@ void GameObjectManager::update(float deltaTime)
 void GameObjectManager::addGameObject(GameObject* gameObject)
 {
 	//need strcode in gameobject to add
+	gameObject->levelID = FileSystem::instance().getCurrentLevel();
 	gameObjects.emplace(gameObject->id, gameObject);
 
 }
@@ -180,7 +180,6 @@ GameObject* GameObjectManager::createGameObject()
 {
 	GameObject* newGameObject = new GameObject();
 
-	newGameObject->levelID = currentLevel;
 	newGameObject->initialize();
 	addGameObject(newGameObject);
 
@@ -191,7 +190,6 @@ GameObject* GameObjectManager::createGameObjectWithComponents(std::list<std::str
 {
 	GameObject* newGameObject = new GameObject();
 
-	newGameObject->levelID = currentLevel;
 	newGameObject->createComponents(comTypes);
 	newGameObject->initialize();
 	addGameObject(newGameObject);

@@ -43,6 +43,7 @@ protected:
 
 public:
 	GameObject* getGameObject();
+	virtual void updatePosition();
 	virtual void load(json::JSON& node) override;
 	virtual void setEnabled(bool _enabled);
 	bool isEnabled();

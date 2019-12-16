@@ -30,6 +30,7 @@ protected:
 	void initialize() override;
 	virtual void render(sf::RenderWindow* _window) override;
 public:
+	void updatePosition();
 	void load(json::JSON& node) override;
 	Text() = default;
 	~Text();

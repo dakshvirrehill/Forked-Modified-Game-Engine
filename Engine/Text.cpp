@@ -150,11 +150,15 @@ void Text::update(float deltaTime)
 	{
 		return;
 	}
-	text.setPosition(getGameObject()->getTransform()->getPosition() + offset);
+	updatePosition();
 	if (text.getString() != string)
 	{
 		text.setString(string);
 	}
+}
+void Text::updatePosition()
+{
+	text.setPosition(getGameObject()->getTransform()->getPosition() + offset);
 }
 
 void Text::render(sf::RenderWindow* _window)

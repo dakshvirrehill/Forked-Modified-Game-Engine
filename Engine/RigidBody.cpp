@@ -222,7 +222,7 @@ void RigidBody::initialize()
 	{
 		return;
 	}
-
+	Component::initialize();
 	//create body in world
 	body = CollisionSystem::instance().createRigidBodyInWorld(bodyDef);
 	for (auto collider : colliders)
@@ -238,7 +238,11 @@ void RigidBody::update(float deltaTime)
 	{
 		return;
 	}
+	updatePosition();
+}
 
+void RigidBody::updatePosition()
+{
 	if (body != nullptr)
 	{
 		b2Vec2 position = b2Vec2(
@@ -255,6 +259,7 @@ void RigidBody::update(float deltaTime)
 			collider->b2transform = body->GetTransform();
 		}
 	}
+
 }
 
 void RigidBody::load(json::JSON& componentData)

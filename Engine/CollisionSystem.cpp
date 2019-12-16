@@ -239,6 +239,7 @@ void CollisionSystem::initialize()
 	physicsWorld = new b2World(GRAVITY);
 }
 
+
 void CollisionSystem::update(float deltaTime)
 {
 	for (auto collisionId : collisionsToRemove)
@@ -261,13 +262,13 @@ void CollisionSystem::update(float deltaTime)
 
 	for (auto rigidBody : rigidbodies)
 	{
-		if (!rigidBody->getGameObject()->isEnabled() || !rigidBody->isEnabled())
+		if (!rigidBody->getGameObject()->isInitialized() || !rigidBody->isInitialized())
 		{
 			continue;
 		}
 		for (auto collider : colliders)
 		{
-			if (!collider->getGameObject()->isEnabled() || !collider->isEnabled())
+			if (!collider->getGameObject()->isInitialized() || !collider->isInitialized())
 			{
 				continue;
 			}

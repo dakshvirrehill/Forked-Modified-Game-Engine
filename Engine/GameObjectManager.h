@@ -20,7 +20,6 @@ class GameObjectManager final : public ISystem
 private:
 	std::map<STRCODE, GameObject*> gameObjects;
 	std::list<GameObject*> gameObjectsToRemove;
-	STRCODE currentLevel = -1;
 
 protected:
 	void initialize() override;

@@ -28,5 +28,7 @@ public:
 	void update(float deltaTime) override;
     void initialize() override;
 	friend class Animation;
+public:
+	void updatePosition();
 };
 

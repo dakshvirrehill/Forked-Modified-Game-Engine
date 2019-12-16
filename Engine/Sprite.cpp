@@ -75,6 +75,15 @@ void Sprite::update(float deltaTime)
 	{
 		return;
 	}
+	updatePosition();
+}
+
+void Sprite::updatePosition()
+{
+	if (sprite == nullptr)
+	{
+		return;
+	}
 	sprite->setPosition(getGameObject()->getTransform()->getPosition());
 }
 

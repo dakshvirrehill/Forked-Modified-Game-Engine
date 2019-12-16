@@ -18,33 +18,7 @@ CircleCollider::~CircleCollider()
 void CircleCollider::setTrigger(bool isTrigger)
 {
 	trigger = isTrigger;
-	//Component* rigidBody = getGameObject()->getComponent("RigidBody");
-	//if (!staticCollider)
-	//{
-	//	if (trigger)
-	//	{
-	//		if (rigidBody != nullptr)
-	//		{
-	//			dynamic_cast<RigidBody*>(rigidBody)->removeCollidable(this);
-	//			b2transform.Set(b2Vec2(
-	//				PIXEL_TO_METER(getGameObject()->getTransform()->getPosition().x),
-	//				PIXEL_TO_METER(getGameObject()->getTransform()->getPosition().y)),
-	//				DEG_TO_RAD(getGameObject()->getTransform()->getRotation()));
-	//		}
-	//		staticCollider = true;
-	//	}
-	//}
-	//else
-	//{
-	//	if (!trigger)
-	//	{
-	//		if (rigidBody != nullptr)
-	//		{
-	//			dynamic_cast<RigidBody*>(rigidBody)->addCollidable(this);
-	//			staticCollider = false;
-	//		}
-	//	}
-	//}
+
 }
 
 void CircleCollider::initialize()
@@ -92,14 +66,12 @@ void CircleCollider::update(float deltaTime)
 	{
 		return;
 	}
+	updatePosition();
+}
 
-	//move b2transform if and only if staticCollider is true
-
-	//use gameobjects getTransform function and use transform.getposition, and transform.getrotation
-	//convert that sf::vector2f and convert it into b2Vec2, and convert rotation from degs to rads
-	//use b2transform.set and pass in the converted b2vec2, and the radians
-
-	if (staticCollider) 
+void CircleCollider::updatePosition()
+{
+	if (staticCollider)
 	{
 		//get transform and rotation from gameobject
 
@@ -107,7 +79,7 @@ void CircleCollider::update(float deltaTime)
 		b2Vec2 position = b2Vec2(
 			PIXEL_TO_METER(getGameObject()->getTransform()->getPosition().x),
 			PIXEL_TO_METER(getGameObject()->getTransform()->getPosition().y));
-		
+
 		//convert degrees to radians
 		float rotation = DEG_TO_RAD(getGameObject()->getTransform()->getRotation());
 

@@ -26,6 +26,7 @@ protected:
 	void load(json::JSON& componentData) override;
 
 public:
+	void updatePosition();
 	PolygonCollider();
 	~PolygonCollider();
 	void setTrigger(bool isTrigger) override;

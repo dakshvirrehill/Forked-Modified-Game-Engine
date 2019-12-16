@@ -129,6 +129,10 @@ void GameObject::deleteFromRemoveList()
 
 void GameObject::addComponent(Component* component)
 {
+	if (components.count(component->getID()) != 0)
+	{
+		return;
+	}
 	// Add the component if it is not a Transform, since there is already a Transform
 	if (component->getDerivedClassHashCode() != Transform::getClassHashCode())
 	{

@@ -44,6 +44,10 @@ GameObject* Component::getGameObject()
 	return gameObject;
 }
 
+void Component::updatePosition()
+{
+}
+
 void Component::setEnabled(bool _enabled)
 {
 	enabled = _enabled;

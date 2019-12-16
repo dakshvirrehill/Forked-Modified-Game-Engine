@@ -33,6 +33,7 @@ protected:
 	//function to check if collidable is already in rigidbody
 	inline bool containsCollider(ICollidable* collider) { return std::count(colliders.begin(), colliders.end(),collider) == 1; }
 public:
+	void updatePosition();
 	RigidBody();
 	virtual ~RigidBody() override;
 

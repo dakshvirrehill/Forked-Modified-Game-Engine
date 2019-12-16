@@ -22,6 +22,7 @@ protected:
 public:
 	CircleCollider();
 	~CircleCollider();
+	void updatePosition();
 	void setTrigger(bool isTrigger) override;
 };
 

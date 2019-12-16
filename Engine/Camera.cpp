@@ -22,12 +22,17 @@ void Camera::update(float deltaTime)
 	{
 		return;
 	}
+	updatePosition();
+}
 
-	if(getGameObject()->getTransform() != nullptr)
+void Camera::updatePosition()
+{
+	if (getGameObject()->getTransform() != nullptr)
 	{
 		//Update the position of the view on the window to be equal to the position of the transform of the camera object
 		RenderSystem::instance().currentView.setCenter(getGameObject()->getTransform()->getPosition());
 	}
+
 }
 
 void Camera::load(json::JSON& loadNode)

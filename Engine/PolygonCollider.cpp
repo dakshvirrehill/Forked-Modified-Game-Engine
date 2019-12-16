@@ -20,33 +20,6 @@ PolygonCollider::~PolygonCollider()
 void PolygonCollider::setTrigger(bool isTrigger)
 {
 	trigger = isTrigger;
-	//Component* rigidBody = getGameObject()->getComponent("RigidBody");
-	//if (!staticCollider)
-	//{
-	//	if (trigger)
-	//	{
-	//		if (rigidBody != nullptr)
-	//		{
-	//			dynamic_cast<RigidBody*>(rigidBody)->removeCollidable(this);
-	//			b2transform.Set(b2Vec2(
-	//				PIXEL_TO_METER(getGameObject()->getTransform()->getPosition().x),
-	//				PIXEL_TO_METER(getGameObject()->getTransform()->getPosition().y)),
-	//				DEG_TO_RAD(getGameObject()->getTransform()->getRotation()));
-	//		}
-	//		staticCollider = true;
-	//	}
-	//}
-	//else
-	//{
-	//	if (!trigger)
-	//	{
-	//		if (rigidBody != nullptr)
-	//		{
-	//			dynamic_cast<RigidBody*>(rigidBody)->addCollidable(this);
-	//			staticCollider = false;
-	//		}
-	//	}
-	//}
 }
 
 void PolygonCollider::initialize()
@@ -57,9 +30,6 @@ void PolygonCollider::initialize()
 	}
 	Component::initialize();
 
-	//get gameobject of component
-	//if current gameobject has a rigidbody component
-	//add this to that rigidbody
 	b2PolygonShape* polygonShape = new b2PolygonShape();
 	if (vertCount < 3)
 	{
@@ -72,9 +42,6 @@ void PolygonCollider::initialize()
 
 	shape = polygonShape;
 	fixtureDefinition.shape = shape;
-
-	//if (!trigger)
-	//{
 		Component* rigidBody = getGameObject()->getComponent("RigidBody");
 		if (rigidBody != nullptr)
 		{
@@ -84,11 +51,6 @@ void PolygonCollider::initialize()
 		{
 			staticCollider = true;
 		}
-	//}
-	//else
-	//{
-	//	staticCollider = true;
-	//}
 
 }
 
@@ -98,13 +60,10 @@ void PolygonCollider::update(float deltaTime)
 	{
 		return;
 	}
-
-	//move b2transform if and only if staticCollider is true
-
-	//use gameobjects getTransform function and use transform.getposition, and transform.getrotation
-	//convert that sf::vector2f and convert it into b2Vec2, and convert rotation from degs to rads
-	//use b2transform.set and pass in the converted b2vec2, and the radians
-
+	updatePosition();
+}
+void PolygonCollider::updatePosition()
+{
 	if (staticCollider)
 	{
 		//get transform and rotation from gameobject
